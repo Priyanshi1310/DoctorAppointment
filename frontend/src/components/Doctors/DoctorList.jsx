@@ -6,7 +6,7 @@ import Loader from '../Loader/Loading';
 import Error from '../Error/Error';
 
 const DoctorList = () => {
-
+  // Fetching doctors' data using custom hook
   const {data: doctors, loading, error} = useFetchData(`${BASE_URL}/doctors`)
 
   return (

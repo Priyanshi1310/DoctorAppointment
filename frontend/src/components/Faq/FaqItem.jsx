@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 
+// FAQ Item Component: Handles individual FAQ item with toggle functionality
 const FaqItem = ({ item }) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  // Function to toggle accordion open/close state
   const toggleAccordion = () => {
     setIsOpen(!isOpen);
   };

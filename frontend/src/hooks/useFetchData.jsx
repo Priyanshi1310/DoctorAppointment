@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import { token } from "../config";
 
+
+// Custom Hook: useFetchData
+// Fetches data from the given URL and manages loading and error states
 const useFetchData = url => {
+
+  // State variables for storing fetched data, loading status, and errors
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -10,6 +15,7 @@ const useFetchData = url => {
     const fetchData = async () => {
       setLoading(true);
       try {
+        // Making the API request with authorization header
         const res = await fetch(url, {
           headers: { Authorization: `Bearer ${token}` },
         });

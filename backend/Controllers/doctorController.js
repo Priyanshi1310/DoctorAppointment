@@ -5,6 +5,7 @@ export const updateDoctor = async (req, res) => {
   const id = req.params.id;
 
   try {
+      // Find doctor by ID and update fields based on request body
     const updatedDoctor = await Doctor.findByIdAndUpdate(
       id,
       { $set: req.body },
@@ -37,6 +38,7 @@ export const getSingleDoctor = async (req, res) => {
   const id = req.params.id;
 
   try {
+    // Find doctor by ID and populate reviews while excluding password
     const doctor = await Doctor.findById(id).populate("reviews").select("-password");
 
     res

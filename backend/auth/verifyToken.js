@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken'
 import Doctor from '../models/DoctorSchema.js'
 import User from '../models/UserSchema.js'
 
+// Middleware: Authenticate User via JWT Token
 export const authenticate = async (req,res,next) => {
     // get token from headers
     const authToken = req.headers.authorization;
@@ -12,6 +13,7 @@ export const authenticate = async (req,res,next) => {
     }
 
     try{
+        // Extract token from "Bearer <token>" format
         const token = authToken.split(" ")[1];
 
         //verify token
@@ -21,6 +23,7 @@ export const authenticate = async (req,res,next) => {
 
         next();
     }catch(err){
+        // Handle token expiration error separately
         if(err.name === 'TokenExpiredError'){
             return res.status(401).json({message:'Token is expired'})
         }
@@ -29,6 +32,7 @@ export const authenticate = async (req,res,next) => {
     }
 }
 
+// Middleware: Restrict Access Based on Roles
 export const restrict = roles => async(req,res,next) => {
     const userId = req.userId
     let user;
@@ -43,6 +47,7 @@ export const restrict = roles => async(req,res,next) => {
         user = doctor
     }
 
+    // Check if user role is authorized
     if(!roles.includes(user.role)){
         return res.status(401).json({success: false, message: "You're not authorized"});
     }
