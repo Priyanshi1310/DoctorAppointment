@@ -7,18 +7,18 @@ The app makes healthcare simple, fast, and convenient.
 
 ## Feature
 1. **Doctors -**
-- Doctor can register themselfves
-- Doctors can updated their profile
-- Doctors can see their appointments
-- Doctors can see their feedbacks
+- Doctors can register on the app.
+- Doctors can update their profiles.
+- Doctors can view their appointments.
+- Doctors can check their feedback.
 
 2. **Patients -**
-- Patient can register themselves
-- Patient can updated their profile
-- Patient can see doctors list
-- Patient can appoint doctor of their choice
-- Patient can give feedback to doctor
-- Patient can see other's feedback
+- Patients can register on the app.
+- Patients can update their profiles.
+- Patients can browse the list of doctors.
+- Patients can book an appointment with their preferred doctor.
+- Patients can give feedback to doctors.
+- Patients can view feedback from other users.
 
 ## Getting Started
 To run the application locally, follow these steps:
