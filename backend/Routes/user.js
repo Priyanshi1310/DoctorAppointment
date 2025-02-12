@@ -19,7 +19,7 @@ router.get("/", authenticate, restrict(['admin']), getAllUsers);
 // @route   GET /api/users/:id
 // @desc    Get a single user by ID
 // @access  Private (Patient only)
-router.get("/:id", authenticate, restrict(['patient']), getSingleUser);
+router.get("/:id", authenticate, restrict(['admin','patient']), getSingleUser);
 
 // @route   PUT /api/users/:id
 // @desc    Update user profile

@@ -43,6 +43,19 @@ export const getCheckoutSession = async (req, res) => {
       session: session.id,
     });
     await booking.save();
+
+    // user.appointments.push(booking._id);
+    // doctor.appointments.push(booking._id);
+
+    // Update Doctor and User's appointment array
+    await Doctor.findByIdAndUpdate(doctor._id, {
+      $push: { appointments: booking._id },
+    });
+
+    await User.findByIdAndUpdate(user._id, {
+      $push: { appointments: booking._id },
+    });
+        
     res
       .status(200)
       .json({ success: true, message: "Successfully Paid", session });
