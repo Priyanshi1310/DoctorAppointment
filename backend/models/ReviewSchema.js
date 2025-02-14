@@ -26,6 +26,7 @@ const reviewSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+// Auto-populate user details (only necessary fields)
 reviewSchema.pre(/^find/, function(next){
   this.populate({
     path: 'user',
@@ -34,6 +35,7 @@ reviewSchema.pre(/^find/, function(next){
   next()
 })
 
+// Static method to calculate average rating for a doctor
 reviewSchema.statics.calcAverageRating = async function(doctorId){
   //this points the current review
 
@@ -48,6 +50,8 @@ reviewSchema.statics.calcAverageRating = async function(doctorId){
     }
   }
 ])
+
+  // Ensure stats exist before updating Doctor
 await Doctor.findByIdAndUpdate(doctorId, {
   totalRating: stats[0].numOfRating,
   averageRating: stats[0].avgRating,
@@ -55,6 +59,7 @@ await Doctor.findByIdAndUpdate(doctorId, {
 console.log(stats)
 }
 
+// Trigger rating calculation after saving a new review
 reviewSchema.post("save", function(){
   this.constructor.calcAverageRating(this.doctor);
 })

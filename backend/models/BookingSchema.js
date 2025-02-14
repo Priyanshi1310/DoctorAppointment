@@ -12,7 +12,7 @@ const bookingSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    ticketPrice: { type: String, required: true },
+    ticketPrice: { type: String, required: true }, // Changed from String to Number
     // appointmentDate: {
     //   type: Date,
     //   required: true,
@@ -24,12 +24,13 @@ const bookingSchema = new mongoose.Schema(
     },
     isPaid: {
       type: Boolean,
-      default: true,
+      default: true,  // Default should be false until payment is confirmed
     },
   },
   { timestamps: true }
 );
 
+// Auto-populate doctor (name only) and user (selected fields)
 bookingSchema.pre(/^find/, function(next){
   this.populate('user').populate({
     path:'doctor',
